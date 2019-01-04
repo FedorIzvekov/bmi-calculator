@@ -5,8 +5,45 @@
     <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>BMI Calculator</title>
+    <link rel="stylesheet" href="css/style.css">
 </head>
-<body>
 
+<body>
+    <div class="container">
+        <h1>BMI Calculator</h1>
+        <form class="form">
+            <div class="form-row">
+                <label for="male">
+                    Male <input type="radio" name="gender" value="male" checked onchange="changeImage('img/male.svg')">
+                </label>
+                <img id="genderImage" src="img/male.svg" alt="gender" width="30" height="30" />
+                <label for="female">
+                    <input type="radio" name="gender" value="female" onchange="changeImage('img/female.svg')">Female
+                </label>
+            </div>
+            <div class="form-row">
+                <img src="img/age.svg" alt="gender" width="30" height="30" />
+                <input type="number" id="age" placeholder="Enter age (18 - 100)" min="18" max="100" required>
+            </div>
+            <div class="form-row">
+                <img src="img/weight.svg" alt="gender" width="30" height="30" />
+                <input type="number" id="weight" placeholder="Enter weight (kg)" required>
+            </div>
+            <div class="form-row">
+                <img src="img/height.svg" alt="gender" width="30" height="30" />
+                <input type="number" id="height" placeholder="Enter height (cm)" required>
+            </div>
+        </form>
+
+        <button type="button" id="calculate">Calculate</button>
+
+        <div class="result">
+            <h2>Results:</h2>
+            <p>BMI: <span id="bmiResult" /></p>
+            <p>Category: <span id="bmiCategory" /></p>
+            <p>Recommended Weight: <span id="recommendedWeight" /></p>
+        </div>
+    </div>
 </body>
+
 </html>
