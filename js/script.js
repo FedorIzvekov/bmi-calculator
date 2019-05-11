@@ -28,8 +28,8 @@ function calculateBMI() {
 
 function isValid(element, value) {
     const fieldName = element.id;
-    const minValues = { age: 18, weight: 30, height: 130 };
-    const maxValues = { age: 100, weight: 300, height: 230 };
+    const minValues = { age: 18, weight: 30, height: 140 };
+    const maxValues = { age: 100, weight: 300, height: 210 };
 
     if (isNaN(value) || value < minValues[fieldName] || value > maxValues[fieldName]) {
         displayInvalid(element, `Please enter a valid ${fieldName} between ${minValues[fieldName]} and ${maxValues[fieldName]}.`);
@@ -52,7 +52,7 @@ function displayValid(element) {
 }
 
 function calculateBMIValue(weight, height) {
-    return (weight / Math.pow(height / 100, 2)).toFixed(2);
+    return (1.3 * (weight / Math.pow(height / 100, 2.5))).toFixed(2);
 }
 
 function displayBMIResult(bmi, gender, age, height) {
@@ -61,7 +61,7 @@ function displayBMIResult(bmi, gender, age, height) {
 
     document.getElementById("bmiResult").textContent = `${bmi}`;
     document.getElementById("bmiCategory").textContent = `${bmiCategory}`;
-    document.getElementById("recommendedWeight").textContent = `${Math.round(recommendedWeight)} kg`;
+    document.getElementById("recommendedWeight").textContent = `${recommendedWeight} kg`;
 }
 
 function getBmiCategory(bmi, gender) {
@@ -76,6 +76,7 @@ function getBmiCategory(bmi, gender) {
 }
 
 function calculateRecommendedWeight(height, gender, age) {
-    const factor = gender === "male" ? 22.5 : 21.8;
-    return (factor * Math.pow(height / 100, 2) + age / 10).toFixed(2);
+    const genderFactor = gender === "male" ? 21.7 : 21.2;
+    const ageFactor = age * 0.03
+    return Math.round(genderFactor / 1.3 * Math.pow(height / 100, 2.5) + ageFactor);
 }
